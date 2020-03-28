@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Bird
 from .models import Feeding
 from .forms import FeedingForm
+from .models import Toy
 
 
 def home(request):
@@ -52,3 +53,28 @@ class BirdUpdate(UpdateView):
 class BirdDelete(DeleteView):
     model = Bird
     success_url = '/birds/'
+
+
+def toys_index(request):
+    toys = Toy.objects.all()
+    return render(request, 'toys/index.html', {'toys': toys})
+
+
+def toys_detail(request, toy_id):
+    toy = Toy.objects.get(id=toy_id)
+    return render(request, 'toys/detail.html', {'toy': toy})
+
+
+class ToyCreate(CreateView):
+    model = Toy
+    fields = '__all__'
+
+
+class ToyUpdate(UpdateView):
+    model = Toy
+    fields = ['color', 'description']
+
+
+class ToyDelete(DeleteView):
+    model = Toy
+    success_url = '/toys/'
