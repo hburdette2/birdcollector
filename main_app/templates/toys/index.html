@@ -7,7 +7,7 @@
 <div class="card">
     <a href="{% url 'detail' toy.id %}">
         <div class="card-content">
-            <span class="card-title">{{ toy.name }}</span>
+            <span class="card-title">A <span class="{{toy.color.lower}}-text">{{toy.color}}</span> {{ toy.name }}</span>
             <p>Color: {{ toy.color }}</p>
             <p>Description: {{ toy.description }}</p>
         </div>
